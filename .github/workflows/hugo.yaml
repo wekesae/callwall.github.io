@@ -28,7 +28,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
       - name: Manually Clone Tella Theme
         run: |
           mkdir -p themes
@@ -41,7 +40,7 @@ jobs:
       - name: Install Tailwind & PostCSS Dependencies
         run: |
           npm init -y
-          npm install -D tailwindcss postcss postcss-cli autoprefixer
+          npm install tailwindcss postcss postcss-cli autoprefixer
       - name: Build with Hugo
         env:
           HUGO_ENVIRONMENT: production
