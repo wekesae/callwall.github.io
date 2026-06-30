@@ -41,10 +41,11 @@ jobs:
         run: |
           npm init -y
           npm install tailwindcss postcss postcss-cli autoprefixer
+          echo "$(pwd)/node_modules/.bin" >> $GITHUB_PATH
       - name: Build with Hugo
         env:
           HUGO_ENVIRONMENT: production
-        run: npx hugo --minify
+        run: hugo --minify
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
