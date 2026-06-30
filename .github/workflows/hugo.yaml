@@ -37,8 +37,14 @@ jobs:
         with:
           hugo-version: 'latest'
           extended: true
-      - name: Install Tailwind Packages Globally
-        run: npm install -g tailwindcss postcss postcss-cli autoprefixer @tailwindcss/cli
+      - name: Install Tailwind & Plugins
+        run: |
+          # Install the main compiler globally so Hugo can see it
+          npm install -g tailwindcss postcss postcss-cli autoprefixer @tailwindcss/cli
+          
+          # Initialize a local project and install the missing typography plugin where Tailwind is looking for it
+          npm init -y
+          npm install @tailwindcss/typography
       - name: Build with Hugo
         env:
           HUGO_ENVIRONMENT: production
