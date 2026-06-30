@@ -24,10 +24,6 @@ jobs:
           fetch-depth: 0
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
       - name: Manually Clone Tella Theme
         run: |
           mkdir -p themes
@@ -37,19 +33,21 @@ jobs:
         with:
           hugo-version: 'latest'
           extended: true
-      - name: Configure and Run Build via PostCSS
+      - name: Inject Standalone Tailwind Binary into Root System Path
         run: |
-          npm init -y
-          npm install tailwindcss postcss postcss-cli autoprefixer
+          # Download the official standalone linux x64 binary
+          curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64
+          chmod +x tailwindcss-linux-x64
           
-          # Create the postcss config file Hugo is searching for
-          echo "module.exports = { plugins: { tailwindcss: {}, autoprefixer: {} } };" > postcss.config.js
+          # Move it to /usr/bin which Hugo is guaranteed to have read/execute access over
+          sudo mv tailwindcss-linux-x64 /usr/bin/tailwindcss
           
-          # Force the local node_modules binaries directly into the current execution step's PATH
-          export PATH="$(pwd)/node_modules/.bin:$PATH"
-          
-          # Build the site
-          hugo --minify
+          # Verify the system can execute it globally
+          tailwindcss --help > /dev/null
+      - name: Build with Hugo
+        env:
+          HUGO_ENVIRONMENT: production
+        run: hugo --minify
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
