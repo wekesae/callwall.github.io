@@ -4,17 +4,25 @@ title = "Callwall"
 theme = "tella"
 
 [params]
-    description = "A sleek, responsive portfolio and blog layout built with Hugo and Tailwind."
+    description = "VoIP Infrastructure, System Administration, and Web Engineering Solutions."
     logo = ""
     
-    # Homepage Hero Section
+    # Homepage Hero Configuration (Handles responsive scaling naturally)
     [params.hero]
         enable = true
         title = "Hi, Welcome to Callwall"
-        subtitle = "System administration, web infrastructure, and clean engineering solutions."
-        image = "" # You can add a relative link to a hero image later
-        
-    # Social Media Icons for Header/Footer
+        subtitle = "Specializing in VoIP infrastructure management, CRM backend integrations, and robust web server deployment."
+        image = "" 
+
+    # Navigation Links
+    [[params.menu]]
+        name = "Home"
+        url = "/"
+    [[params.menu]]
+        name = "Blog"
+        url = "/blog/"
+
+    # Social Profiles for Footers/Headers
     [[params.social]]
         name = "github"
         url = "https://github.com/wekesae"
