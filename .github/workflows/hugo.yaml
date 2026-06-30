@@ -37,12 +37,16 @@ jobs:
         with:
           hugo-version: 'latest'
           extended: true
-      - name: Install Tailwind & PostCSS Globally
-        run: sudo npm install -g tailwindcss postcss postcss-cli autoprefixer
-      - name: Build with Hugo
-        env:
-          HUGO_ENVIRONMENT: production
-        run: hugo --minify
+      - name: Install Tailwind & Build Site
+        run: |
+          npm init -y
+          npm install tailwindcss postcss postcss-cli autoprefixer
+          
+          # Inject the hugo command into an npm script to naturally pass the path
+          npx node -e "const p=require('./package.json'); p.scripts={build:'hugo --minify'}; require('fs').writeFileSync('./package.json', JSON.stringify(p, null, 2))"
+          
+          # Run the build through npm
+          npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
