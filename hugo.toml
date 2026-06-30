@@ -1,8 +1,20 @@
 baseURL = "https://wekesae.github.io/callwall.github.io/"
-languageCode = 'en-us'
-title = 'Callwall Hugo Site'
-theme = 'tella'
+languageCode = "en-us"
+title = "Callwall"
+theme = "tella"
 
-[caches]
-[caches.images]
-dir = ':cacheDir/images'
+[params]
+    description = "A sleek, responsive portfolio and blog layout built with Hugo and Tailwind."
+    logo = ""
+    
+    # Homepage Hero Section
+    [params.hero]
+        enable = true
+        title = "Hi, Welcome to Callwall"
+        subtitle = "System administration, web infrastructure, and clean engineering solutions."
+        image = "" # You can add a relative link to a hero image later
+        
+    # Social Media Icons for Header/Footer
+    [[params.social]]
+        name = "github"
+        url = "https://github.com/wekesae"
