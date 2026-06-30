@@ -37,11 +37,8 @@ jobs:
         with:
           hugo-version: 'latest'
           extended: true
-      - name: Install Tailwind & PostCSS Dependencies
-        run: |
-          npm init -y
-          npm install tailwindcss postcss postcss-cli autoprefixer
-          echo "$(pwd)/node_modules/.bin" >> $GITHUB_PATH
+      - name: Install Tailwind & PostCSS Globally
+        run: sudo npm install -g tailwindcss postcss postcss-cli autoprefixer
       - name: Build with Hugo
         env:
           HUGO_ENVIRONMENT: production
