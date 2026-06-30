@@ -24,6 +24,10 @@ jobs:
           fetch-depth: 0
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - name: Manually Clone Tella Theme
         run: |
           mkdir -p themes
@@ -33,17 +37,8 @@ jobs:
         with:
           hugo-version: 'latest'
           extended: true
-      - name: Inject Standalone Tailwind Binary into Root System Path
-        run: |
-          # Download the official standalone linux x64 binary
-          curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64
-          chmod +x tailwindcss-linux-x64
-          
-          # Move it to /usr/bin which Hugo is guaranteed to have read/execute access over
-          sudo mv tailwindcss-linux-x64 /usr/bin/tailwindcss
-          
-          # Verify the system can execute it globally
-          tailwindcss --help > /dev/null
+      - name: Install Tailwind Packages Globally
+        run: npm install -g tailwindcss postcss postcss-cli autoprefixer @tailwindcss/cli
       - name: Build with Hugo
         env:
           HUGO_ENVIRONMENT: production
