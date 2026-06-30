@@ -2,6 +2,8 @@ baseURL = "https://wekesae.github.io/callwall.github.io/"
 locale = "en-us"
 title = "Callwall"
 theme = "tella"
+canonifyURLs = true
+relativeURLs = true
 
 [params]
     description = "VoIP Infrastructure, System Administration, and Web Engineering Solutions."
