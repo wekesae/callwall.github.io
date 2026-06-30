@@ -1,4 +1,4 @@
-baseURL = "https://callwall.github.io/"
+baseURL = "https://wekesae.github.io/callwall.github.io/"
 locale = "en-us"
 title = "Callwall"
 theme = "tella"
@@ -16,7 +16,6 @@ theme = "tella"
     [params.social]
         github = "https://github.com/wekesae"
 
-# Corrected Menu Format for Hugo
 [[menu.main]]
     name = "Home"
     url = "/"
