@@ -37,16 +37,19 @@ jobs:
         with:
           hugo-version: 'latest'
           extended: true
-      - name: Install Tailwind & Build Site
+      - name: Configure and Run Build via PostCSS
         run: |
           npm init -y
           npm install tailwindcss postcss postcss-cli autoprefixer
           
-          # Inject the hugo command into an npm script to naturally pass the path
-          npx node -e "const p=require('./package.json'); p.scripts={build:'hugo --minify'}; require('fs').writeFileSync('./package.json', JSON.stringify(p, null, 2))"
+          # Create the postcss config file Hugo is searching for
+          echo "module.exports = { plugins: { tailwindcss: {}, autoprefixer: {} } };" > postcss.config.js
           
-          # Run the build through npm
-          npm run build
+          # Force the local node_modules binaries directly into the current execution step's PATH
+          export PATH="$(pwd)/node_modules/.bin:$PATH"
+          
+          # Build the site
+          hugo --minify
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
