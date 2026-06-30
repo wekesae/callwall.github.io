@@ -1,0 +1,28 @@
+baseURL = "https://wekesae.github.io/callwall.github.io/"
+locale = "en-us"
+title = "Callwall"
+theme = "tella"
+
+[params]
+    description = "VoIP Infrastructure, System Administration, and Web Engineering Solutions."
+
+    # Homepage Hero Configuration
+    [params.hero]
+        enable = true
+        title = "Hi, Welcome to Callwall"
+        subtitle = "Specializing in VoIP infrastructure management, CRM backend integrations, and robust web server deployment."
+        image = "" 
+
+    [params.social]
+        github = "https://github.com/wekesae"
+
+# Corrected Menu Format for Hugo
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+[[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 2
