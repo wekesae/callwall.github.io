@@ -1,4 +1,4 @@
-baseURL = "https://wekesae.github.io/callwall.github.io/"
+baseURL = "https://wekesae.github.io/"
 locale = "en-us"
 title = "Callwall"
 theme = "tella"
