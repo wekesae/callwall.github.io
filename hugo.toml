@@ -1,0 +1,8 @@
+baseURL = 'https://callwall.github.io/'
+languageCode = 'en-us'
+title = 'Callwall Hugo Site'
+theme = 'tella'
+
+[caches]
+[caches.images]
+dir = ':cacheDir/images'
