@@ -1,7 +1,6 @@
 ---
 title: "Welcome to My Blog"
 date: 2026-06-30
-image: ""
 draft: false
 ---
 
