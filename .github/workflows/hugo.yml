@@ -27,9 +27,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '22' # Upgraded to support modern Hugo security flags
 
-      # Installs the compilers globally so they are registered in the system PATH
       - name: Install PostCSS and Tailwind globally
         run: npm install -g postcss postcss-cli autoprefixer tailwindcss
 
