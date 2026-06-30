@@ -28,9 +28,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          # Removed the cache line to stop the lockfile error
 
-      - name: Install Dependencies
+      # Installs the compilers globally so they are registered in the system PATH
+      - name: Install PostCSS and Tailwind globally
+        run: npm install -g postcss postcss-cli autoprefixer tailwindcss
+
+      - name: Install Local Dependencies
         run: npm install
 
       - name: Setup Hugo
