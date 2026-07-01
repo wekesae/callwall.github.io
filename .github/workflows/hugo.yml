@@ -24,6 +24,15 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # Automatically installs the required PostCSS and Tailwind compilers
+      - name: Install PostCSS CLI
+        run: npm install -g postcss postcss-cli autoprefixer tailwindcss
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
