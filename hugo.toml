@@ -1,4 +1,5 @@
 baseURL = "https://wekesae.github.io/callwall.github.io/"
+canonifyURLs = true
 locale = "en-us"
 title = "Callwall"
 theme = "tella"
