@@ -5,6 +5,10 @@ intro_image: "images/hero.png"
 intro_image_absolute: false
 intro_image_hide_on_mobile: false
 
+# Theme compatibility flags
+TailwindCSS: true
+tailwindcss: true
+
 # Grid Blocks for Home Page
 features:
   - title: "Responsive Layout"
