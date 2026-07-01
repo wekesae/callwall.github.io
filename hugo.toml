@@ -11,6 +11,8 @@ resourceDir = "resources"
 [params]
   description = "Tella, A Hugo theme for Companies."
   footer_text = "© 2026 Callwall. All rights reserved."
+  # This tells the theme template to evaluate the Tailwind setup cleanly:
+  TailwindCSS = true
 
 [[menu.main]]
   name = "Home"
