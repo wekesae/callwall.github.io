@@ -39,3 +39,7 @@ theme = "tella"
     name = "Contact"
     url = "/contact/"
     weight = 4
+[security]
+  [security.exec]
+    allow = ['^postcss$', '^node$']
+    osEnv = daylight = ['(?i)^(PATH|Path|NODE_PATH)$']
