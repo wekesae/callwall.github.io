@@ -1,0 +1,72 @@
+name: Deploy Hugo site to Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.124.1
+    steps:
+      - name: Checkout Site Source
+        uses: actions/checkout@v4
+
+      - name: Auto-Clone Official Tella Theme Files
+        run: |
+          mkdir -p themes
+          git clone https://github.com/opera7133/tella.git themes/tella
+
+      - name: Setup Node.js Environment
+        uses: actions/configure-pages@v4
+
+      - name: Install Node Framework Assets
+        run: |
+          if [ -f package.json ]; then
+            npm install
+          else
+            cp themes/tella/exampleSite/package.json .
+            cp themes/tella/exampleSite/tailwind.config.js .
+            cp themes/tella/exampleSite/postcss.config.js .
+            npm install
+          fi
+
+      - name: Setup Hugo Engine Bundle
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+
+      - name: Compile and Build Static Production HTML
+        run: hugo --gc --minify
+
+      - name: Upload Finished Deployment Artifact Folder
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy Compiled Site Directly to GitHub Pages Live Grid
+        id: deployment
+        uses: actions/deploy-pages@v4
