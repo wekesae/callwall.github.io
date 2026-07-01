@@ -1,9 +1,41 @@
 baseURL = "https://wekesae.github.io/callwall.github.io/"
+title = "Callwall"
 theme = "tella"
-relativeURLs = true
+languageCode = "en-us"
 
+# Fixes for GitHub Project Pages subfolder
+relativeURLs = true
 publishDir = "public"
 resourceDir = "resources"
+
+[params]
+    description = "Tella, A Hugo theme for Companies."
+    # Footer and sidebar custom text strings go here
+
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+[[menu.main]]
+    name = "Products"
+    url = "/products/"
+    weight = 2
+
+[[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 3
+
+[[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 4
+
+[[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 5
 
 [security]
   [security.exec]
