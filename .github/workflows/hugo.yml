@@ -35,16 +35,23 @@ jobs:
       - name: Setup Node.js Environment
         uses: actions/configure-pages@v4
 
-      - name: Install Node Framework Assets
+      - name: Handle Node Framework Assets Cleanly
         run: |
-          if [ -f package.json ]; then
-            npm install
-          else
+          # If theme has an example package.json, grab it
+          if [ -f themes/tella/exampleSite/package.json ]; then
             cp themes/tella/exampleSite/package.json .
-            cp themes/tella/exampleSite/tailwind.config.js .
-            cp themes/tella/exampleSite/postcss.config.js .
-            npm install
+          elif [ -f themes/tella/package.json ]; then
+            cp themes/tella/package.json .
           fi
+
+          # Safe copy configuration files only if they actually exist
+          [ -f themes/tella/exampleSite/tailwind.config.js ] && cp themes/tella/exampleSite/tailwind.config.js . || true
+          [ -f themes/tella/exampleSite/postcss.config.js ] && cp themes/tella/exampleSite/postcss.config.js . || true
+          [ -f themes/tella/tailwind.config.js ] && cp themes/tella/tailwind.config.js . || true
+          [ -f themes/tella/postcss.config.js ] && cp themes/tella/postcss.config.js . || true
+
+          # If npm install runs, it handles the compilation securely
+          npm install
 
       - name: Setup Hugo Engine Bundle
         uses: peaceiris/actions-hugo@v3
