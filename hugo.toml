@@ -1,17 +1,14 @@
 baseURL = "https://wekesae.github.io/callwall.github.io/"
 title = "Callwall"
 theme = "tella"
+languageCode = "en-us"
 
-# Asset tracking configurations
 relativeURLs = true
 publishDir = "public"
 resourceDir = "resources"
 
 [params]
   description = "Tella, A Hugo theme for Companies."
-  # Forces theme to inject default design assets
-  customCSS = []
-  customJS = []
 
 [[menu.main]]
   name = "Home"
