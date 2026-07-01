@@ -40,10 +40,13 @@ jobs:
           # Remove the broken markdown demo file causing the shortcode crash
           rm -f content/blog/rich-content.md
           
-          # Dynamically point base URL to your repo route without altering variables
+          # Standardize filename format to config.toml for older Hugo core compatibility
           if [ -f hugo.toml ]; then
-            sed -i 's|baseURL = ".*"|baseURL = "https://wekesae.github.io/callwall.github.io/"|g' hugo.toml
-          elif [ -f config.toml ]; then
+            mv hugo.toml config.toml
+          fi
+          
+          # Dynamically point base URL to your repo route
+          if [ -f config.toml ]; then
             sed -i 's|baseURL = ".*"|baseURL = "https://wekesae.github.io/callwall.github.io/"|g' config.toml
           fi
 
