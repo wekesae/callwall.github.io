@@ -40,20 +40,39 @@ jobs:
           # Remove the broken markdown demo file
           rm -f content/blog/rich-content.md
           
-          # Find which configuration file the theme used
+          # Find configuration file name
           TARGET_CONFIG=""
           if [ -f hugo.toml ]; then TARGET_CONFIG="hugo.toml"; fi
           if [ -f config.toml ]; then TARGET_CONFIG="config.toml"; fi
           
-          # Inject the variables safely into every block context to satisfy the layout engine
           if [ ! -z "$TARGET_CONFIG" ]; then
-            # Fix base URL
+            # Fix base URL using sed safely
             sed -i 's|baseURL = ".*"|baseURL = "https://wekesae.github.io/callwall.github.io/"|g' "$TARGET_CONFIG"
             
-            # Inject explicit fallback definitions directly into the file
-            echo -e "\nTailwindCSS = true\ntailwindcss = true" >> "$TARGET_CONFIG"
-            echo -e "\n[params]\nTailwindCSS = true\ntailwindcss = true" >> "$TARGET_CONFIG"
-            echo -e "\n[params.css]\nTailwindCSS = true\ntailwindcss = true" >> "$TARGET_CONFIG"
+            # Use Python to insert values into the correct spots safely without creating duplicate blocks
+            python3 - <<EOF
+          filename = "$TARGET_CONFIG"
+          with open(filename, 'r') as f:
+              lines = f.readlines()
+          
+          new_lines = []
+          # 1. Add global parameters at the absolute top of the file
+          new_lines.append("TailwindCSS = true\n")
+          new_lines.append("tailwindcss = true\n")
+          
+          for line in lines:
+              new_lines.append(line)
+              # 2. Inject parameters right after the [params] block definition
+              if line.strip() == "[params]":
+                  new_lines.append("  TailwindCSS = true\n")
+                  new_lines.append("  tailwindcss = true\n")
+          
+          # 3. Append the explicit css table block safely at the end
+          new_lines.append("\n[params.css]\n  TailwindCSS = true\n  tailwindcss = true\n")
+          
+          with open(filename, 'w') as f:
+              f.writelines(new_lines)
+          EOF
           fi
 
       - name: Setup Node.js Environment
