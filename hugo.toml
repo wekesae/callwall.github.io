@@ -1,48 +1,10 @@
 baseURL = "https://wekesae.github.io/callwall.github.io/"
 theme = "tella"
 relativeURLs = true
-locale = "en-us"
-title = "Callwall"
-theme = "tella"
+
 publishDir = "public"
 resourceDir = "resources"
 
-[params]
-    description = "VoIP Infrastructure, System Administration, and Web Engineering Solutions."
-
-    # Homepage Hero & Carousel Settings
-    [params.hero]
-        enable = true
-
-        # Pointing to the native placeholder image included in the Tella theme repository
-        [[params.hero.slider]]
-            image = "images/placeholder.jpg"
-            title = "Tella, A Hugo theme for Companies."
-
-        [[params.hero.slider]]
-            image = "images/placeholder.jpg"
-            title = "Robust Infrastructure & System Architecture."
-
-# Main Navigation Menu
-[[menu.main]]
-    name = "Products"
-    url = "/products/"
-    weight = 1
-
-[[menu.main]]
-    name = "Blog"
-    url = "/blog/"
-    weight = 2
-
-[[menu.main]]
-    name = "About"
-    url = "/about/"
-    weight = 3
-
-[[menu.main]]
-    name = "Contact"
-    url = "/contact/"
-    weight = 4
 [security]
   [security.exec]
     allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^git$', '^node$', '^postcss$', '^tailwindcss$']
