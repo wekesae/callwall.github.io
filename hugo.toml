@@ -6,20 +6,20 @@ theme = "tella"
 [params]
     description = "VoIP Infrastructure, System Administration, and Web Engineering Solutions."
 
-    # This configuration targets the structure in Screenshot 2026-07-01 093632.jpg
+    # Homepage Hero & Carousel Settings
     [params.hero]
         enable = true
 
-        # The theme layout populates this block as the responsive slider component
+        # Pointing to the native placeholder image included in the Tella theme repository
         [[params.hero.slider]]
-            image = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop"
+            image = "images/placeholder.jpg"
             title = "Tella, A Hugo theme for Companies."
 
         [[params.hero.slider]]
-            image = "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1200&auto=format&fit=crop"
+            image = "images/placeholder.jpg"
             title = "Robust Infrastructure & System Architecture."
 
-# Expanded Main Navigation Menu
+# Main Navigation Menu
 [[menu.main]]
     name = "Products"
     url = "/products/"
