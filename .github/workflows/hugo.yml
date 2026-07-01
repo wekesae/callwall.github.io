@@ -28,7 +28,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
 
       # Uses the root package.json dependencies to build the theme assets locally
       - name: Install dependencies
