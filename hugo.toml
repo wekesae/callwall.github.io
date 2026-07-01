@@ -3,6 +3,10 @@ title = "Tella"
 theme = "tella"
 languageCode = "en-us"
 
+# Standard root configuration variables
+TailwindCSS = true
+tailwindcss = true
+
 # GitHub Pages path optimization rules
 relativeURLs = true
 publishDir = "public"
@@ -11,8 +15,8 @@ resourceDir = "resources"
 [params]
   description = "Tella, A Hugo theme for Companies."
   footer_text = "© 2026 Callwall. All rights reserved."
-  # This tells the theme template to evaluate the Tailwind setup cleanly:
   TailwindCSS = true
+  tailwindcss = true
 
 [[menu.main]]
   name = "Home"
