@@ -27,31 +27,24 @@ jobs:
       - name: Checkout Site Source
         uses: actions/checkout@v4
 
-      - name: Auto-Clone Official Tella Theme Files
+      - name: Download Clean Theme Package
         run: |
           mkdir -p themes
           git clone https://github.com/opera7133/tella.git themes/tella
 
+      - name: Mirror Official Example Site Structure Completely
+        run: |
+          # Copy all folders, config files, and settings from the theme's working example
+          cp -r themes/tella/exampleSite/* .
+          
+          # Inject your specific GitHub Pages URL into the copied config
+          sed -i 's|baseURL = ".*"|baseURL = "https://wekesae.github.io/callwall.github.io/"|g' config.toml
+
       - name: Setup Node.js Environment
         uses: actions/configure-pages@v4
 
-      - name: Handle Node Framework Assets Cleanly
-        run: |
-          # If theme has an example package.json, grab it
-          if [ -f themes/tella/exampleSite/package.json ]; then
-            cp themes/tella/exampleSite/package.json .
-          elif [ -f themes/tella/package.json ]; then
-            cp themes/tella/package.json .
-          fi
-
-          # Safe copy configuration files only if they actually exist
-          [ -f themes/tella/exampleSite/tailwind.config.js ] && cp themes/tella/exampleSite/tailwind.config.js . || true
-          [ -f themes/tella/exampleSite/postcss.config.js ] && cp themes/tella/exampleSite/postcss.config.js . || true
-          [ -f themes/tella/tailwind.config.js ] && cp themes/tella/tailwind.config.js . || true
-          [ -f themes/tella/postcss.config.js ] && cp themes/tella/postcss.config.js . || true
-
-          # If npm install runs, it handles the compilation securely
-          npm install
+      - name: Install Node Dependencies
+        run: npm install
 
       - name: Setup Hugo Engine Bundle
         uses: peaceiris/actions-hugo@v3
