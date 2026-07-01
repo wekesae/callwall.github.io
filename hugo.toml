@@ -42,4 +42,4 @@ theme = "tella"
 [security]
   [security.exec]
     allow = ['^postcss$', '^node$']
-    osEnv = daylight = ['(?i)^(PATH|Path|NODE_PATH)$']
+    osEnv = ['(?i)^(PATH|Path|NODE_PATH)$']
