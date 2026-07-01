@@ -1,41 +1,27 @@
 baseURL = "https://wekesae.github.io/callwall.github.io/"
 title = "Callwall"
 theme = "tella"
-languageCode = "en-us"
 
-# Fixes for GitHub Project Pages subfolder
+# Asset tracking configurations
 relativeURLs = true
 publishDir = "public"
 resourceDir = "resources"
 
 [params]
-    description = "Tella, A Hugo theme for Companies."
-    # Footer and sidebar custom text strings go here
+  description = "Tella, A Hugo theme for Companies."
+  # Forces theme to inject default design assets
+  customCSS = []
+  customJS = []
 
 [[menu.main]]
-    name = "Home"
-    url = "/"
-    weight = 1
+  name = "Home"
+  url = "/"
+  weight = 1
 
 [[menu.main]]
-    name = "Products"
-    url = "/products/"
-    weight = 2
-
-[[menu.main]]
-    name = "Blog"
-    url = "/blog/"
-    weight = 3
-
-[[menu.main]]
-    name = "About"
-    url = "/about/"
-    weight = 4
-
-[[menu.main]]
-    name = "Contact"
-    url = "/contact/"
-    weight = 5
+  name = "Blog"
+  url = "/blog/"
+  weight = 2
 
 [security]
   [security.exec]
