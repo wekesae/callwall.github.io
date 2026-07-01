@@ -37,14 +37,23 @@ jobs:
           # Copy everything from the official example folder
           cp -r themes/tella/exampleSite/* .
           
-          # Remove the broken demo file causing the shortcode crash
+          # Remove the broken markdown demo file
           rm -f content/blog/rich-content.md
           
-          # Dynamically update the URL regardless of whether it uses hugo.toml or config.toml
-          if [ -f hugo.toml ]; then
-            sed -i 's|baseURL = ".*"|baseURL = "https://wekesae.github.io/callwall.github.io/"|g' hugo.toml
-          elif [ -f config.toml ]; then
-            sed -i 's|baseURL = ".*"|baseURL = "https://wekesae.github.io/callwall.github.io/"|g' config.toml
+          # Find which configuration file the theme used
+          TARGET_CONFIG=""
+          if [ -f hugo.toml ]; then TARGET_CONFIG="hugo.toml"; fi
+          if [ -f config.toml ]; then TARGET_CONFIG="config.toml"; fi
+          
+          # Inject the variables safely into every block context to satisfy the layout engine
+          if [ ! -z "$TARGET_CONFIG" ]; then
+            # Fix base URL
+            sed -i 's|baseURL = ".*"|baseURL = "https://wekesae.github.io/callwall.github.io/"|g' "$TARGET_CONFIG"
+            
+            # Inject explicit fallback definitions directly into the file
+            echo -e "\nTailwindCSS = true\ntailwindcss = true" >> "$TARGET_CONFIG"
+            echo -e "\n[params]\nTailwindCSS = true\ntailwindcss = true" >> "$TARGET_CONFIG"
+            echo -e "\n[params.css]\nTailwindCSS = true\ntailwindcss = true" >> "$TARGET_CONFIG"
           fi
 
       - name: Setup Node.js Environment
