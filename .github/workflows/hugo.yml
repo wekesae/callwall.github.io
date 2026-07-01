@@ -34,11 +34,15 @@ jobs:
 
       - name: Mirror Official Example Site Structure Completely
         run: |
-          # Copy all folders, config files, and settings from the theme's working example
+          # Copy everything from the guide's official example folder
           cp -r themes/tella/exampleSite/* .
           
-          # Inject your specific GitHub Pages URL into the copied config
-          sed -i 's|baseURL = ".*"|baseURL = "https://wekesae.github.io/callwall.github.io/"|g' config.toml
+          # Dynamically update the URL regardless of whether it uses hugo.toml or config.toml
+          if [ -f hugo.toml ]; then
+            sed -i 's|baseURL = ".*"|baseURL = "https://wekesae.github.io/callwall.github.io/"|g' hugo.toml
+          elif [ -f config.toml ]; then
+            sed -i 's|baseURL = ".*"|baseURL = "https://wekesae.github.io/callwall.github.io/"|g' config.toml
+          fi
 
       - name: Setup Node.js Environment
         uses: actions/configure-pages@v4
