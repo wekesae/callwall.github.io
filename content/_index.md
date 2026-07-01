@@ -1,16 +1,21 @@
 ---
-title: "Tella, A Hugo theme for Companies."
-description: "Sample text here to populate the hero grid section."
-intro_image: "images/hero.png"
-intro_image_absolute: false
-intro_image_hide_on_mobile: false
+title: "Callwall"
+description: "Tella, A Hugo theme for Companies."
 
-# Tella maps homepage grids by looping over this specific feature block array
+# Hero Section
+hero_title: "Welcome to Callwall"
+hero_subtitle: "Your custom communications and layout interface engineered cleanly."
+hero_image: "images/hero.png"
+hero_button_text: "Get Started"
+hero_button_link: "/contact/"
+
+# Featured Section Matrix
+features_title: "Core Infrastructure Solutions"
 features:
-  - title: "Responsive Layout"
-    description: "Designed to look clean across mobile, tablet, and desktop viewports."
-    image: "images/features/responsive.png"
-  - title: "Tailwind CSS Architecture"
-    description: "Built entirely with modern utility classes for rapid configuration tweaks."
-    image: "images/features/tailwind.png"
+  - title: "VoIP Integration"
+    description: "Robust, enterprise-grade routing optimization and clean diagnostics data tracking."
+    icon: "bi bi-telephone-outbound"
+  - title: "CRM Synergy"
+    description: "Seamless alignment with your on-premise components and dynamic workflow modules."
+    icon: "bi bi-cpu"
 ---
